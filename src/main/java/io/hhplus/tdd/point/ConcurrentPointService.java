@@ -14,7 +14,7 @@ public class ConcurrentPointService {
     private final ConcurrentHashMap<Long, ReentrantLock> userLock = new ConcurrentHashMap<>();
 
     private final ReentrantLock getUserLock(long userId) {
-        return userLock.computeIfAbsent(userId, id -> new ReentrantLock());
+        return userLock.computeIfAbsent(userId, id -> new ReentrantLock(true));
     }
 
     // 포인트 조회
