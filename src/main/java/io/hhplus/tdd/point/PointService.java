@@ -35,6 +35,10 @@ public class PointService {
     public UserPoint chargeUserPoint(long userId, long amount, long chargeMillis) {
         UserPoint userPoint = userPointTable.selectById(userId);
 
+        if (userPoint == null) {
+            pointHistoryTable.insert(userId, 0, TransactionType.CHARGE, chargeMillis);
+        }
+
         if (amount < 1000) {
             throw new RuntimeException("포인트 최소 충전 금액보다 적습니다");
         }
@@ -43,7 +47,7 @@ public class PointService {
         }
 
         pointHistoryTable.insert(userId, amount, TransactionType.CHARGE, chargeMillis);
-        UserPoint chargePoint = userPointTable.insertOrUpdate(userId, amount);
+        UserPoint chargePoint = userPointTable.insertOrUpdate(userId, (userPoint.point() + amount));
         return chargePoint;
     }
 

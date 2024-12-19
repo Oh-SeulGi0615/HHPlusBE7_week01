@@ -21,7 +21,7 @@ class PointServiceTest {
     final PointService pointService = new PointService(userPointTable, pointHistoryTable);
 
     @Test
-    void userid로_포인트조회_테스트() {
+    void userid로_포인트조회_테스트() throws InterruptedException {
         // given
         final long userId = 1L;
         final long chargedPoint = 15000L;
@@ -38,7 +38,7 @@ class PointServiceTest {
     }
 
     @Test
-    void userid로_포인트내역조회_테스트() {
+    void userid로_포인트내역조회_테스트() throws InterruptedException {
         // given
         final long userId = 1L;
         final long chargePoint = 10000L;
@@ -59,7 +59,7 @@ class PointServiceTest {
     }
 
     @Test
-    void 포인트충전테스트_1_정상케이스() {
+    void 포인트충전테스트_1_정상케이스() throws InterruptedException {
         // given
         final long userId = 1L;
         final long chargePoint = 15000L;
@@ -77,7 +77,7 @@ class PointServiceTest {
     }
 
     @Test
-    void 포인트충전테스트_2_최소충전금액미만() {
+    void 포인트충전테스트_2_최소충전금액미만() throws InterruptedException {
         // given
         final long userId = 1L;
         final long chargePoint = 900L;
@@ -100,7 +100,7 @@ class PointServiceTest {
     }
 
     @Test
-    void 포인트충전테스트_3_최대충전금액초과() {
+    void 포인트충전테스트_3_최대충전금액초과() throws InterruptedException {
         // given
         final long userId = 1L;
         final long chargePoint = 15_000_000L;
@@ -123,7 +123,7 @@ class PointServiceTest {
     }
 
     @Test
-    void 포인트충전테스트_4_합산포인트한도초과() {
+    void 포인트충전테스트_4_합산포인트한도초과() throws InterruptedException {
         // given
         final long userId = 1L;
         final long chargingPoint = 1_500_000L;
@@ -148,7 +148,7 @@ class PointServiceTest {
     }
 
     @Test
-    void 포인트사용테스트_1_정상케이스() {
+    void 포인트사용테스트_1_정상케이스() throws InterruptedException {
         // given
         final long userId = 1L;
         final long chargedPoint = 10000L;
@@ -169,7 +169,7 @@ class PointServiceTest {
     }
 
     @Test
-    void 포인트사용테스트_2_음수포인트사용요청() {
+    void 포인트사용테스트_2_음수포인트사용요청() throws InterruptedException {
         // given
         final long userId = 1L;
         final long chargedPoint = 10000L;
@@ -193,7 +193,7 @@ class PointServiceTest {
     }
 
     @Test
-    void 포인트사용테스트_3_포인트부족() {
+    void 포인트사용테스트_3_포인트부족() throws InterruptedException {
         // given
         final long userId = 1L;
         final long chargedPoint = 5000L;
